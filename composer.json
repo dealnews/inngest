@@ -1,0 +1,20 @@
+{
+    "name": "dealnews/inngest",
+    "description": "Client library for working with Inngest",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "autoload": {
+        "psr-4": {
+            "DealNews\\Inngest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Brian Moon",
+            "email": "brian@moonspot.net"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}
