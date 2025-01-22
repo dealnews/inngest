@@ -30,9 +30,9 @@ class Client {
      *
      * @throws     \RuntimeException
      *
-     * @return     bool               Returns true when no error
+     * @return     array              Array of event ids returned from Inngest
      */
-    public function send(string $event_name, array $data, ?string $id = null): bool {
+    public function send(string $event_name, array $data, ?string $id = null): array {
 
         $payload = [
             "name" => $event_name,
@@ -55,10 +55,14 @@ class Client {
             ]
         );
 
+        $body = (string)$res->getBody();
+
         if ($res->getStatusCode() !== 200) {
-            throw new \RuntimeException((string)$res->getBody());
+            throw new \RuntimeException($body, $res->getStatusCode());
         }
 
-        return true;
+        $data = json_decode($body, true);
+
+        return $data['ids'];
     }
 }
